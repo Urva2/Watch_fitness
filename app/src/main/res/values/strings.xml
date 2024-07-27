@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="project1">project1</string>
+
+    <string name="ap" tools:ignore="DuplicateDefinition">My App</string>
+    <string name="water_reminder">Water Reminder</string>
+
+
+</resources>

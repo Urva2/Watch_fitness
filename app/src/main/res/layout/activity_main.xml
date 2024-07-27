@@ -1,0 +1,67 @@
+<!-- activity_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image7"
+    >
+
+    <!-- Heading TextView -->
+
+    <!-- Sentence TextView -->
+
+    <!-- Calculate Button -->
+
+    <TextView
+        android:id="@+id/textViewSentence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="39dp"
+        android:gravity="center"
+        android:text="SPY ATHLETE?"
+        android:textColor="@color/White"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/buttonCalculateDGI"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/textViewSentence"
+        android:layout_marginBottom="-75dp"
+        android:background="@drawable/round_button"
+        android:text="BMI"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/hydration"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@+id/textViewSentence"
+        android:layout_marginLeft="85dp"
+        android:layout_marginBottom="-77dp"
+        android:layout_toRightOf="@+id/buttonCalculateDGI"
+        android:background="@drawable/round_button"
+        android:text="Hydration alarm"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/sleepreminderbtn"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewSentence"
+        android:layout_marginBottom="-169dp"
+        android:background="@drawable/round_button"
+        android:text="Sleep Reminder"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/mdcnbtn"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_alignBottom="@+id/textViewSentence"
+        android:layout_marginBottom="-148dp"
+        android:background="@drawable/round_button"
+        android:text="Medication Reminder"
+        android:textSize="20dp" />
+
+</RelativeLayout>
+
