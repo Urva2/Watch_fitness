@@ -1,72 +1,87 @@
 package com.example.project1.presentation.activities;
 
-import static com.example.project1.R.id.ans;
-import static com.example.project1.R.id.btn2;
-
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.R;
 
 public class activity2 extends AppCompatActivity {
 
+    private EditText editTextHeight;
+    private EditText editTextWeight;
+    private EditText editTextResult;
+    private Button btnCalculate;
+    private Button btnMale;
+    private Button btnFemale;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Reference the EditText fields, Button, and TextView
-        EditText editTextHeight = findViewById(R.id.editTextNumber);
-        EditText editTextWeight = findViewById(R.id.editTextNumber2);
-        Button buttonCalculate = findViewById(btn2);
-        TextView textViewResult = findViewById(ans);
+        // Initialize the views
+        editTextHeight = findViewById(R.id.adjust_height);
+        editTextWeight = findViewById(R.id.adjust_weight);
+        editTextResult = findViewById(R.id.editTextResult);
+        btnCalculate = findViewById(R.id.btnCalculate);
+        btnMale = findViewById(R.id.btnMale);
+        btnFemale = findViewById(R.id.btnFemale);
 
-        // Set an OnClickListener to the button
-        buttonCalculate.setOnClickListener(v -> {
-            // Get the height and weight input from the user
-            String heightStr = editTextHeight.getText().toString();
-            String weightStr = editTextWeight.getText().toString();
+        // Set onClickListener for Calculate Button with animation
+        btnCalculate.setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_click_animation));
+            calculateBMI();
+        });
 
-            if (!heightStr.isEmpty() && !weightStr.isEmpty()) {
-                // Convert the input to float
-                float height = Float.parseFloat(heightStr);
-                height=height/100;
-                float weight = Float.parseFloat(weightStr);
-                String structure = null;
-                // Calculate the BMI
-                float bmi = calculateBMI(height, weight);
-                if(bmi<18.5) {
-                    structure = "underweight";
-                }
-                else if (bmi>18&&bmi<24) {
-                    structure ="healthy";
-                }
-                else if (bmi>25&&bmi<30.0) {
-                    structure ="overweight";
-                }
-                else if (bmi>31) {
-                    structure ="obese";
-                }
-                else{
-                }
+        // Set onClickListener for Male Button with animation
+        btnMale.setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_click_animation));
+            // Add any additional logic for btnMale if needed
+        });
 
-                String format = String.format("%s",structure);
-                textViewResult.setText(format);
-            } else {
-                // Show a message if any of the input fields are empty
-                Toast.makeText(activity2.this, "Please enter both height and weight", Toast.LENGTH_SHORT).show();
-            }
+        // Set onClickListener for Female Button with animation
+        btnFemale.setOnClickListener(v -> {
+            v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_click_animation));
+            // Add any additional logic for btnFemale if needed
         });
     }
 
-    // Method to calculate BMI
-    private float calculateBMI(float height, float weight) {
-        return weight / (height * height);
+    private void calculateBMI() {
+        String heightStr = editTextHeight.getText().toString();
+        String weightStr = editTextWeight.getText().toString();
+
+        // Check if height and weight fields are not empty
+        if (!TextUtils.isEmpty(heightStr) && !TextUtils.isEmpty(weightStr)) {
+            double height = Double.parseDouble(heightStr) / 100; // Convert height to meters
+            double weight = Double.parseDouble(weightStr);
+
+            // Calculate BMI
+            double bmi = weight / (height * height);
+
+            // Determine BMI category
+            String chara;
+            if (bmi < 18.5) {
+                chara = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 24) {
+                chara = "Healthy";
+            } else if (bmi >= 25 && bmi < 30) {
+                chara = "Overweight";
+            } else {
+                chara = "Obese";
+            }
+
+            // Display result in the EditText next to Calculate BMI button
+            editTextResult.setText(chara);
+        } else {
+            // Show a message if any of the input fields are empty
+            Toast.makeText(activity2.this, "Please enter both height and weight", Toast.LENGTH_SHORT).show();
+        }
     }
 }
-
-
